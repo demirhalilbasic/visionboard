@@ -18,8 +18,16 @@
         <button id="saveBtn">Snimi</button>
         <button id="clearBtn">Očisti ploču</button> <!-- TODO: Primjer izmjene -->
     </div>
-
     <div id="board"></div>
+
+    <div class="recent-tray">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+            <h3 style="margin:0;">Posljednje skinuto (max 3)</h3>
+            <button id="clearRecentBtn" class="restore-btn" style="position:static;transform:none;">Očisti
+                skinute</button>
+        </div>
+        <div id="recentItems" class="recent-items"></div>
+    </div>
 
     <footer>
         <p>Web programiranje 2025 &copy; Internacionalna poslovno-informaciona akademija Tuzla</p>

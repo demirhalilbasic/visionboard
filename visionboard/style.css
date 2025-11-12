@@ -6,8 +6,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh; /* dozvoli rast stranice */
+  overflow-x: hidden; /* samo horizontalni scroll sakrij */
 }
 
 h1 {
@@ -48,7 +48,8 @@ button:hover {
 #board {
   position: relative;
   width: 90%;
-  flex-grow: 1;
+  flex-grow: 0;
+  height: 340px; /* veca fiksna visina ploce */
   background: url("slike/pluto.png"); /* tekstura pluta */
   background-size: cover;
   border-radius: 12px;
@@ -108,16 +109,98 @@ button:hover {
 }
 
 /* Slike */
+.pinned-img {
+  padding: 0 !important;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
 .pinned-img img {
   width: 120px;
   height: auto;
   border-radius: 8px;
+  display: block;
 }
 
 footer {
   font-size: 13px;
   color: #5b4636;
   margin: 10px;
+}
+
+/* Recent tray */
+.recent-tray {
+  width: 90%;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  height: 190px; /* fixna visina sekcije */
+  box-sizing: border-box;
+  overflow: hidden; /* ne dozvoli rastezanje spolja */
+  margin-top: 24px; /* jasniji razmak od boarda */
+}
+
+.recent-tray h3 {
+  width: 90%;
+  font-size: 15px;
+  color: #4b382a;
+}
+
+.recent-items {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap; /* jedan red */
+  margin-top: 8px;
+  height: 150px; /* fiksna visina sadrzaja */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.recent-item {
+  position: relative;
+  background: #fff9e6;
+  border: 1px solid #d5c7a4;
+  border-radius: 8px;
+  padding: 6px 8px 26px 8px;
+  width: 160px; /* fiksna sirina */
+  height: 80px; /* fiksna visina */
+  font-size: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.recent-item img {
+  width: 100%;
+  height: 70px; /* kontrolisana visina preview-a */
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.restore-btn {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #8b5e3c;
+  color: #fff;
+  border: none;
+  padding: 4px 10px;
+  font-size: 11px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.restore-btn:hover {
+  background: #70472b;
 }
 
 /* x Ikona za brisanje (bez kruga, mininalisticki stil) */
