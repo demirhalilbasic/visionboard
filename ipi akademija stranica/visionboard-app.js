@@ -1,6 +1,4 @@
-// ======= Vision Board Logic =======
-
-// Odaberi glavni element
+// Integrated Vision Board (copied from standalone, blue theme)
 const board = document.getElementById("board");
 const addNoteBtn = document.getElementById("addNoteBtn");
 const addImageBtn = document.getElementById("addImageBtn");
@@ -10,20 +8,15 @@ const clearBtn = document.getElementById("clearBtn");
 const recentContainer = document.getElementById("recentItems");
 const clearRecentBtn = document.getElementById("clearRecentBtn");
 
-// Recent removed items (max 3)
-let recentRemoved = []; // in-memory
+let recentRemoved = [];
 const RECENT_KEY = "visionBoardRecent";
+const STORAGE_KEY = "visionBoardItems";
 
-// Boje za ljepljive bilješke
 const colors = ["color1", "color2", "color3", "color4", "color5", "color6"];
-
-// Primjeri slika i citata
-// Ispravka putanje: ovaj fajl se nalazi u folderu "visionboard/" zajedno sa folderom "slike/"
-// Zato koristimo direktno "slike/..." umjesto pogrešnog "../slike/...".
-// Dodan fallback u slučaju da se posluži iz integrirane verzije sa drugačijom relativnom strukturom.
-const IMG_PRIMARY = "slike/";
-const IMG_FALLBACK = "../visionboard/slike/"; // koristi se ako primary ne pronađe fajl
-const imageNames = [
+// Load images from root/visionboard/slike (adjusted relative path)
+// Integrated page is inside "ipi akademija stranica" so we go one level up
+const IMG_BASE = "../visionboard/slike/";
+const sampleImages = [
   "slika1.jpg",
   "slika2.jpg",
   "slika3.jpg",
@@ -34,8 +27,7 @@ const imageNames = [
   "slika8.jpg",
   "slika9.jpg",
   "slika10.jpg",
-];
-const sampleImages = imageNames.map((n) => IMG_PRIMARY + n);
+].map((n) => IMG_BASE + n);
 
 const sampleQuotes = [
   "“Svaka dovoljno napredna tehnologija jednaka je magiji.” –Arthur C. Clarke ",
@@ -43,50 +35,38 @@ const sampleQuotes = [
   "“Ne osnivate zajednice. Zajednice već postoje. Pitanje koje treba postaviti je kako im možete pomoći da budu bolje.”– Mark Zuckerberg",
 ];
 
-// ======= Usluzni program za stvaranje stavki koje se mogu povlaciti i brisati =======
 function makeDraggable(el) {
   let offsetX, offsetY;
-
-  // Kreiranje delete (X) button
   const delBtn = document.createElement("button");
   delBtn.textContent = "📌";
   delBtn.className = "delete-btn";
   el.appendChild(delBtn);
-
-  // Brisanje elementa na click
   delBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // prevent starting drag
-    // Serialize before remove
+    e.stopPropagation();
     const data = serializeElement(el);
     el.remove();
     pushRecent(data);
     renderRecent();
   });
-
-  // logika povlacenja
   el.addEventListener("mousedown", dragStart);
-
   function dragStart(e) {
-    if (e.target === delBtn) return; // preskoci povlacenja ako se klikne X
+    if (e.target === delBtn) return;
     offsetX = e.clientX - el.offsetLeft;
     offsetY = e.clientY - el.offsetTop;
     document.addEventListener("mousemove", drag);
     document.addEventListener("mouseup", dragEnd);
   }
-
   function drag(e) {
     e.preventDefault();
     el.style.left = e.clientX - offsetX + "px";
     el.style.top = e.clientY - offsetY + "px";
   }
-
   function dragEnd() {
     document.removeEventListener("mousemove", drag);
     document.removeEventListener("mouseup", dragEnd);
   }
 }
 
-// ======= Dodaj Post It =======
 addNoteBtn.addEventListener("click", () => {
   const note = document.createElement("div");
   note.className = "note " + colors[Math.floor(Math.random() * colors.length)];
@@ -98,26 +78,18 @@ addNoteBtn.addEventListener("click", () => {
   board.appendChild(note);
 });
 
-// ======= Dodatj sliku =======
 addImageBtn.addEventListener("click", () => {
   const div = document.createElement("div");
   div.className = "pinned-img";
   div.style.left = Math.random() * 400 + "px";
   div.style.top = Math.random() * 250 + "px";
   const img = document.createElement("img");
-  const chosen = imageNames[Math.floor(Math.random() * imageNames.length)];
-  img.src = IMG_PRIMARY + chosen;
-  // Fallback ako je stranica servirana iz drugog relativnog konteksta
-  img.onerror = () => {
-    img.onerror = null;
-    img.src = IMG_FALLBACK + chosen;
-  };
+  img.src = sampleImages[Math.floor(Math.random() * sampleImages.length)];
   div.appendChild(img);
   makeDraggable(div);
   board.appendChild(div);
 });
 
-// ======= Dodaj citat =======
 addQuoteBtn.addEventListener("click", () => {
   const q = document.createElement("div");
   q.className = "quote";
@@ -129,23 +101,23 @@ addQuoteBtn.addEventListener("click", () => {
   board.appendChild(q);
 });
 
-// ======= Snimi Visual Board =======
-saveBtn.addEventListener("click", saveBoard);
+saveBtn.addEventListener("click", () => saveBoard());
+clearBtn.addEventListener("click", () => {
+  if (confirm("Clear the board?")) {
+    board.innerHTML = "";
+    localStorage.removeItem(STORAGE_KEY);
+  }
+});
 
 function saveBoard(silent = false) {
   const items = [];
-  document.querySelectorAll("#board > div").forEach((el) => {
-    const data = serializeElement(el);
-    items.push(data);
-  });
-  localStorage.setItem("visionBoardItems", JSON.stringify(items));
-  // Također sačuvaj i posljednje skinute pinove (max 3)
+  document
+    .querySelectorAll("#board > div")
+    .forEach((el) => items.push(serializeElement(el)));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   localStorage.setItem(RECENT_KEY, JSON.stringify(recentRemoved));
-  if (!silent) {
-    alert("Board saved!");
-  }
+  if (!silent) alert("Board saved!");
 }
-
 function serializeElement(el) {
   return {
     type: el.classList.contains("note")
@@ -159,7 +131,6 @@ function serializeElement(el) {
     top: el.style.top,
   };
 }
-
 function createElementFromData(data) {
   const div = document.createElement("div");
   div.className = data.className;
@@ -170,15 +141,11 @@ function createElementFromData(data) {
   makeDraggable(div);
   return div;
 }
-
 function pushRecent(data) {
-  // Remove delete buttons inside html to avoid duplicates when restoring preview
-  // Keep raw html as is for full fidelity.
-  recentRemoved.unshift(data); // add to start
+  recentRemoved.unshift(data);
   if (recentRemoved.length > 3) recentRemoved = recentRemoved.slice(0, 3);
   localStorage.setItem(RECENT_KEY, JSON.stringify(recentRemoved));
 }
-
 function renderRecent() {
   if (!recentContainer) return;
   recentContainer.innerHTML = "";
@@ -189,86 +156,71 @@ function renderRecent() {
   recentRemoved.forEach((item, idx) => {
     const wrap = document.createElement("div");
     wrap.className = "recent-item";
-    // Provide simplified preview
     if (item.type === "image") {
-      // extract img if present
       const temp = document.createElement("div");
       temp.innerHTML = item.html;
       const img = temp.querySelector("img");
       if (img) {
-        const previewImg = document.createElement("img");
-        previewImg.src = img.src;
-        wrap.appendChild(previewImg);
+        const preview = document.createElement("img");
+        preview.src = img.src;
+        wrap.appendChild(preview);
       }
     } else {
       const text = document.createElement("div");
       text.textContent =
         (item.type === "note" ? "Bilješka: " : "Citat: ") +
-        truncateText(stripHTML(item.html), 40);
+        truncate(stripHTML(item.html), 40);
       wrap.appendChild(text);
     }
     const btn = document.createElement("button");
     btn.textContent = "Vrati";
     btn.className = "restore-btn";
-    btn.addEventListener("click", () => {
-      restoreRecent(idx);
-    });
+    btn.addEventListener("click", () => restoreRecent(idx));
     wrap.appendChild(btn);
     recentContainer.appendChild(wrap);
   });
 }
-
 function stripHTML(html) {
-  const div = document.createElement("div");
-  div.innerHTML = html;
-  return div.textContent || "";
+  const d = document.createElement("div");
+  d.innerHTML = html;
+  return d.textContent || "";
 }
-
-function truncateText(t, len) {
-  return t.length > len ? t.slice(0, len - 3) + "..." : t;
+function truncate(t, l) {
+  return t.length > l ? t.slice(0, l - 3) + "..." : t;
 }
-
 function restoreRecent(index) {
   const item = recentRemoved[index];
   if (!item) return;
   const el = createElementFromData(item);
-  // Put near top-left with slight offset so user sees it
   el.style.left = Math.random() * 100 + "px";
   el.style.top = Math.random() * 80 + "px";
   board.appendChild(el);
-  // Remove from recent list
   recentRemoved.splice(index, 1);
   localStorage.setItem(RECENT_KEY, JSON.stringify(recentRemoved));
   renderRecent();
-  saveBoard(true); // tiho sačuvaj bez alert-a
+  saveBoard(true);
 }
 
-// ======= Ucitaj Visual Board =======
 function loadBoard() {
-  const data = localStorage.getItem("visionBoardItems");
+  const data = localStorage.getItem(STORAGE_KEY);
   if (!data) return;
-  const items = JSON.parse(data);
-  items.forEach((item) => {
-    const div = createElementFromData(item);
-    board.appendChild(div);
-  });
+  JSON.parse(data).forEach((item) =>
+    board.appendChild(createElementFromData(item))
+  );
 }
-loadBoard();
-
-// Load recent removed items
 function loadRecent() {
   const data = localStorage.getItem(RECENT_KEY);
   if (!data) return;
   try {
     recentRemoved = JSON.parse(data);
-  } catch (e) {
+  } catch {
     recentRemoved = [];
   }
   renderRecent();
 }
+loadBoard();
 loadRecent();
 
-// Clear recent removed items
 if (clearRecentBtn) {
   clearRecentBtn.addEventListener("click", () => {
     if (confirm("Očistiti sve skinute pinove?")) {
@@ -278,11 +230,3 @@ if (clearRecentBtn) {
     }
   });
 }
-
-// ======= Ocisti Visual Board =======
-clearBtn.addEventListener("click", () => {
-  if (confirm("Clear the board?")) {
-    board.innerHTML = "";
-    localStorage.removeItem("visionBoardItems");
-  }
-});

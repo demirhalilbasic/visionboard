@@ -1,0 +1,66 @@
+/* Integrated Whiteboard styling (blue theme) */
+.toolbar {
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+/* Center wrapper for toolbar + canvas */
+.whiteboard-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* smanjen razmak */
+  margin-right: 5px;
+}
+/* Grupe za label + input u jednom redu */
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* blago povećan razmak */
+}
+.control-group input[type="color"] {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+.control-group input[type="range"] {
+  width: 140px;
+}
+button {
+  background: #345aaa;
+  color: #fff;
+  margin: 0 4px 0 0; /* kompaktan razmak */
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #2a4a8a;
+}
+canvas {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  touch-action: none;
+  max-width: 90vw;
+  max-height: 70vh;
+  cursor: url("slike/marker.png") 0 30, auto;
+  margin: 0 auto;
+}

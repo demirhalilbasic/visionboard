@@ -1,0 +1,133 @@
+/* Quiz styling aligned to IPI blue theme (#345AAA) */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #f5f7fb;
+  color: #22324a;
+}
+
+#quizRoot {
+  max-width: 720px;
+  margin: 20px auto 40px;
+  padding: 8px 24px 24px;
+}
+#quizRoot h2 {
+  color: #345aaa;
+  margin-top: 10px;
+}
+#quizRoot p {
+  text-align: center;
+}
+
+.quiz-form {
+  width: 100%;
+  margin: 16px auto;
+  background: #ffffff;
+  border: 1px solid #dde4ee;
+  border-radius: 12px;
+  padding: 20px 22px 26px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+.quiz-form > div {
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #ebf0f6;
+}
+.quiz-form > div:last-of-type {
+  border-bottom: none;
+}
+.quiz-form h3 {
+  margin: 6px 0 10px;
+  font-size: 1rem;
+  color: #26416d;
+}
+
+label {
+  margin-left: 4px;
+  cursor: pointer;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+.btn {
+  display: block;
+  margin: 18px auto 6px;
+  background: #345aaa;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover,
+.btn:focus {
+  background: #2a4a8a;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+}
+.btn:active {
+  transform: translateY(-1px);
+}
+
+.result {
+  text-align: center;
+  margin-top: 12px;
+  font-weight: 600;
+  color: #345aaa;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.result.visible {
+  opacity: 1;
+}
+
+.correct {
+  background: #e3f6e9;
+  border-radius: 6px;
+}
+.incorrect {
+  background: #fde6e6;
+  border-radius: 6px;
+}
+
+.back-link {
+  color: #345aaa;
+  font-weight: bold;
+  text-decoration: none;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 16px 10px 30px;
+  color: #566272;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 90, 170, 0.25);
+}
+
+@media (max-width: 520px) {
+  .quiz-form {
+    padding: 16px 16px 22px;
+  }
+  #quizRoot {
+    padding: 4px 14px 14px;
+  }
+}

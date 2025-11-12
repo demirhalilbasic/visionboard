@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="bs">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bingo - Student Fun Zone</title>
+  <link rel="stylesheet" href="css/izgled.css" />
+  <link rel="stylesheet" href="css/bingo-style.css" />
+  <link rel="icon" href="favicon.ico" />
+</head>
+
+<body>
+  <header>
+    <a href="index.html"><img src="slike/logo-ipi.png" alt="IPI Akademija" /></a>
+    <nav>
+      <ul>
+        <li><a href="index.html">O kursevima</a></li>
+        <li><a href="popis.html">Popis kurseva</a></li>
+        <li><a href="raspored.html">Raspored kurseva</a></li>
+        <li><a href="StudentFunZone.html">Student Fun Zone</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+  <article class="bingo-wrapper">
+    <h2>Student Fun Zone - Bingo</h2>
+    <p class="intro">Popuni red, kolonu ili dijagonalu – klikni na polje da ga označiš. Središnje polje je besplatno.
+      Generiši novu karticu za novu rundu.</p>
+    <div class="controls">
+      <button id="generateCardBtn">Nova kartica</button>
+      <button id="resetMarksBtn">Reset oznaka</button>
+      <button id="exportPdfBtn">Print / PDF</button>
+    </div>
+    <div id="bingoStatus" class="status"></div>
+    <table id="bingoTable" class="bingo-table" aria-label="Bingo tabla">
+      <tbody id="bingoBoard"></tbody>
+    </table>
+    <p style="text-align:center;margin-top:18px;">
+      <a href="StudentFunZone.html" class="back-link">← Povratak na Student Fun Zone</a>
+    </p>
+  </article>
+  <footer>&copy; Internacionalna poslovno-informaciona akademija Tuzla</footer>
+  <script src="bingo-app.js"></script>
+</body>
+
+</html>
