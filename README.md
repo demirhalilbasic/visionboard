@@ -3,7 +3,7 @@
 **Course:** Web Programming (semester project)  
 **Institution:** Internacionalna poslovno-informaciona akademija (IPI Academy), Tuzla
 
-A modern, unified web interface combining an academy informational site with four interactive mini‑apps: **Bingo**, **Quiz**, **Vision Board**, and **Whiteboard**. Built with HTML5, CSS3 and vanilla JavaScript; styled with a unified blue gradient theme; enhanced with celebratory win overlays (modals + confetti).
+A modern, unified web interface combining an academy informational site with four interactive mini‑apps: **Bingo**, **Quiz**, **Vision Board** and **Whiteboard**. Built with HTML5, CSS3 and vanilla JavaScript; styled with a unified blue gradient theme; enhanced with celebratory win overlays (modals + confetti).
 
 ## 1) Project Overview
 
