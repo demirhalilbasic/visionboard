@@ -7,7 +7,7 @@ A modern, unified web interface combining an academy informational site with fou
 
 ## 1) Project Overview
 
-This project was developed throughout the semester for the **Web Programming** course at IPI Academy. The goal is to create an engaging, accessible web experience that combines practical academy information (schedule, contact, program listings) with four interactive mini‑games designed to boost student engagement and demonstrate core web development skills—DOM manipulation, event handling, local storage, canvas drawing and responsive design—without relying on frameworks or build tools.
+This project was developed throughout the semester for the **Web Programming** course at IPI Academy. The goal is to create an engaging, accessible web experience that combines practical academy information (schedule, contact, program listings) with four interactive mini‑games designed to boost student engagement and demonstrate core web development skills: DOM manipulation, event handling, local storage, canvas drawing and responsive design.
 
 ## 2) Project Structure
 
