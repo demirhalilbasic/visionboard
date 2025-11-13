@@ -1,15 +1,17 @@
 /* Bingo page styling aligned with IPI blue theme (#345AAA) */
 body {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background: #f5f7fb;
+  font-family: Verdana, Arial, sans-serif;
+  background: linear-gradient(135deg, #e8f0f7 0%, #d4e3f0 50%, #c5d9ed 100%);
+  background-attachment: fixed;
   color: #23395d;
 }
 
 .bingo-wrapper {
-  max-width: 950px;
-  margin: 20px auto 40px;
-  padding: 10px 20px 30px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 40px 30px;
+  box-sizing: border-box;
 }
 
 h2 {

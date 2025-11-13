@@ -41,6 +41,12 @@ const generateBtn = document.getElementById("generateCardBtn");
 const resetMarksBtn = document.getElementById("resetMarksBtn");
 const exportBtn = document.getElementById("exportPdfBtn");
 const statusEl = document.getElementById("bingoStatus");
+const overlay = document.getElementById("bingoOverlay");
+const bingoCloseBtn = document.getElementById("bingoCloseBtn");
+const bingoNewGameBtn = document.getElementById("bingoNewGameBtn");
+const bingoResetBtn = document.getElementById("bingoResetBtn");
+const bingoContinueBtn = document.getElementById("bingoContinueBtn");
+let winShown = false;
 
 function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
@@ -130,13 +136,58 @@ function checkWin() {
 }
 
 function declareWin(type) {
+  if (winShown) return; // show only first time per round
+  winShown = true;
   statusEl.textContent = "BINGO! " + type + " kompletiran.";
   statusEl.classList.add("win");
+  showOverlay(type);
+}
+
+function showOverlay(type) {
+  overlay.classList.add("visible");
+  const msgEl = document.getElementById("bingoWinMsg");
+  if (msgEl) {
+    msgEl.innerHTML = `Čestitamo – osvojili ste <strong>${type}</strong>!`;
+  }
+  spawnConfettiDots(40);
+  // focus first action button for accessibility
+  bingoNewGameBtn?.focus();
+}
+
+function hideOverlay() {
+  overlay.classList.remove("visible");
+}
+
+function spawnConfettiDots(count) {
+  const card = overlay.querySelector(".modal-card");
+  if (!card) return;
+  const cardRect = card.getBoundingClientRect();
+  const width = cardRect.width;
+  const height = cardRect.height;
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement("div");
+    dot.className = "confetti-dot";
+    const size = 8 + Math.random() * 14; // veći raspon
+    dot.style.width = size + "px";
+    dot.style.height = size + "px";
+    // ravnomjerno po širini i visini kartice
+    const left = Math.random() * (width - size);
+    const top = Math.random() * (height * 0.6); // zadrži u gornjih ~60% da izgleda kao pad
+    dot.style.left = left + "px";
+    dot.style.top = top + "px";
+    const colors = ["#345aaa", "#2a4a8a", "#ffb347", "#6ec6ff", "#ffd54f"];
+    dot.style.background = colors[Math.floor(Math.random() * colors.length)];
+    card.appendChild(dot);
+    // sporije nestajanje + mala rotacija
+    dot.style.animationDuration = (3.2 + Math.random() * 2).toFixed(2) + "s";
+    setTimeout(() => dot.remove(), 5200);
+  }
 }
 
 function resetMarks() {
   statusEl.textContent = "";
   statusEl.classList.remove("win");
+  winShown = false;
   boardEl
     .querySelectorAll("td:not(.free)")
     .forEach((td) => td.classList.remove("marked"));
@@ -147,9 +198,25 @@ function exportPdf() {
   window.print(); // jednostavno rješenje za sada
 }
 
-generateBtn.addEventListener("click", generateCard);
+generateBtn.addEventListener("click", () => {
+  generateCard();
+  winShown = false;
+  hideOverlay();
+});
 resetMarksBtn.addEventListener("click", resetMarks);
 exportBtn.addEventListener("click", exportPdf);
+
+// Overlay buttons
+bingoCloseBtn?.addEventListener("click", hideOverlay);
+bingoContinueBtn?.addEventListener("click", hideOverlay);
+bingoNewGameBtn?.addEventListener("click", () => {
+  generateCard();
+  hideOverlay();
+});
+bingoResetBtn?.addEventListener("click", () => {
+  resetMarks();
+  hideOverlay();
+});
 
 // initial
 generateCard();

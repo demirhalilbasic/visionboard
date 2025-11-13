@@ -1,4 +1,8 @@
 /* Integrated Whiteboard styling (blue theme) */
+body,
+html {
+  font-family: Verdana, Arial, sans-serif;
+}
 .toolbar {
   background: #fff;
   padding: 10px 15px;
@@ -61,6 +65,6 @@ canvas {
   touch-action: none;
   max-width: 90vw;
   max-height: 70vh;
-  cursor: url("slike/marker.png") 0 30, auto;
+  cursor: url("../slike/marker.png") 0 30, auto;
   margin: 0 auto;
 }

@@ -23,67 +23,83 @@
       </ul>
     </nav>
   </header>
-  <article id="quizRoot">
-    <h2>Student Fun Zone - Kviz</h2>
-    <p>Testirajte svoje znanje o HTML-u i osnovama weba. Neka pitanja mogu imati više tačnih odgovora.</p>
-    <form class="quiz-form" onsubmit="return false;">
-      <div id="q1_block">
-        <h3>1. Šta je skraćenica HTML?</h3>
-        <input type="radio" id="q1a1" name="q1" value="HyperText Markup Language" />
-        <label for="q1a1">HyperText Markup Language</label><br />
-        <input type="radio" id="q1a2" name="q1" value="HighText Markdown Language" />
-        <label for="q1a2">HighText Markdown Language</label><br />
-        <input type="radio" id="q1a3" name="q1" value="HyperText Makeup Language" />
-        <label for="q1a3">HyperText Makeup Language</label><br />
-      </div>
-      <div id="q2_block">
-        <h3>2. Koje se oznake koriste za izradu popisa u HTML-u?</h3>
-        <input type="checkbox" id="q2a1" name="q2" value="<ul>" />
-        <label for="q2a1">&lt;ul&gt;</label><br />
-        <input type="checkbox" id="q2a2" name="q2" value="<ol>" />
-        <label for="q2a2">&lt;ol&gt;</label><br />
-        <input type="checkbox" id="q2a3" name="q2" value="<li>" />
-        <label for="q2a3">&lt;li&gt;</label><br />
-        <input type="checkbox" id="q2a4" name="q2" value="<br>" />
-        <label for="q2a4">&lt;br&gt;</label><br />
-      </div>
-      <div id="q3_block">
-        <h3>3. Koja se oznaka koristi za umetanje slike?</h3>
-        <input type="radio" id="q3a1" name="q3" value="<image>" />
-        <label for="q3a1">&lt;image&gt;</label><br />
-        <input type="radio" id="q3a2" name="q3" value="<img>" />
-        <label for="q3a2">&lt;img&gt;</label><br />
-        <input type="radio" id="q3a3" name="q3" value="<src>" />
-        <label for="q3a3">&lt;src&gt;</label><br />
-      </div>
-      <div id="q4_block">
-        <h3>4. Koji od sljedećih su valjani HTML atributi?</h3>
-        <input type="checkbox" id="q4a1" name="q4" value="href" />
-        <label for="q4a1">href</label><br />
-        <input type="checkbox" id="q4a2" name="q4" value="src" />
-        <label for="q4a2">src</label><br />
-        <input type="checkbox" id="q4a3" name="q4" value="bold" />
-        <label for="q4a3">bold</label><br />
-        <input type="checkbox" id="q4a4" name="q4" value="alt" />
-        <label for="q4a4">alt</label><br />
-      </div>
-      <div id="q5_block">
-        <h3>5. Koji je ispravan način za stvaranje linkova u HTML-u?</h3>
-        <input type="radio" id="q5a1" name="q5" value="<a url=\" example.com\">Click</a>" />
-        <label for="q5a1">&lt;a url="example.com"&gt;Click&lt;/a&gt;</label><br />
-        <input type="radio" id="q5a2" name="q5" value="<a href=\" example.com\">Click</a>" />
-        <label for="q5a2">&lt;a href="example.com"&gt;Click&lt;/a&gt;</label><br />
-        <input type="radio" id="q5a3" name="q5" value="<link>Click</link>" />
-        <label for="q5a3">&lt;link&gt;Click&lt;/link&gt;</label><br />
-      </div>
-      <button id="checkAnswersBtn" class="btn">Provjerite odgovore</button>
-      <div id="quizResult" class="result"></div>
-      <button id="restartQuizBtn" class="btn" style="display:none;">Ponovo</button>
-    </form>
-    <p style="text-align:center;margin-top:18px;">
-      <a href="StudentFunZone.html" class="back-link">← Povratak na Student Fun Zone</a>
-    </p>
+  <article>
+    <div id="quizRoot">
+      <h2>Student Fun Zone - Kviz</h2>
+      <p>Testirajte svoje znanje o HTML-u i osnovama weba. Neka pitanja mogu imati više tačnih odgovora.</p>
+      <form class="quiz-form" onsubmit="return false;">
+        <div id="q1_block">
+          <h3>1. Šta je skraćenica HTML?</h3>
+          <input type="radio" id="q1a1" name="q1" value="HyperText Markup Language" />
+          <label for="q1a1">HyperText Markup Language</label><br />
+          <input type="radio" id="q1a2" name="q1" value="HighText Markdown Language" />
+          <label for="q1a2">HighText Markdown Language</label><br />
+          <input type="radio" id="q1a3" name="q1" value="HyperText Makeup Language" />
+          <label for="q1a3">HyperText Makeup Language</label><br />
+        </div>
+        <div id="q2_block">
+          <h3>2. Koje se oznake koriste za izradu popisa u HTML-u?</h3>
+          <input type="checkbox" id="q2a1" name="q2" value="<ul>" />
+          <label for="q2a1">&lt;ul&gt;</label><br />
+          <input type="checkbox" id="q2a2" name="q2" value="<ol>" />
+          <label for="q2a2">&lt;ol&gt;</label><br />
+          <input type="checkbox" id="q2a3" name="q2" value="<li>" />
+          <label for="q2a3">&lt;li&gt;</label><br />
+          <input type="checkbox" id="q2a4" name="q2" value="<br>" />
+          <label for="q2a4">&lt;br&gt;</label><br />
+        </div>
+        <div id="q3_block">
+          <h3>3. Koja se oznaka koristi za umetanje slike?</h3>
+          <input type="radio" id="q3a1" name="q3" value="<image>" />
+          <label for="q3a1">&lt;image&gt;</label><br />
+          <input type="radio" id="q3a2" name="q3" value="<img>" />
+          <label for="q3a2">&lt;img&gt;</label><br />
+          <input type="radio" id="q3a3" name="q3" value="<src>" />
+          <label for="q3a3">&lt;src&gt;</label><br />
+        </div>
+        <div id="q4_block">
+          <h3>4. Koji od sljedećih su valjani HTML atributi?</h3>
+          <input type="checkbox" id="q4a1" name="q4" value="href" />
+          <label for="q4a1">href</label><br />
+          <input type="checkbox" id="q4a2" name="q4" value="src" />
+          <label for="q4a2">src</label><br />
+          <input type="checkbox" id="q4a3" name="q4" value="bold" />
+          <label for="q4a3">bold</label><br />
+          <input type="checkbox" id="q4a4" name="q4" value="alt" />
+          <label for="q4a4">alt</label><br />
+        </div>
+        <div id="q5_block">
+          <h3>5. Koji je ispravan način za stvaranje linkova u HTML-u?</h3>
+          <input type="radio" id="q5a1" name="q5" value='<a url="example.com">Click</a>' />
+          <label for="q5a1">&lt;a url="example.com"&gt;Click&lt;/a&gt;</label><br />
+          <input type="radio" id="q5a2" name="q5" value='<a href="example.com">Click</a>' />
+          <label for="q5a2">&lt;a href="example.com"&gt;Click&lt;/a&gt;</label><br />
+          <input type="radio" id="q5a3" name="q5" value='<link>Click</link>' />
+          <label for="q5a3">&lt;link&gt;Click&lt;/link&gt;</label><br />
+        </div>
+        <button id="checkAnswersBtn" class="btn">Provjerite odgovore</button>
+        <div id="quizResult" class="result"></div>
+        <button id="restartQuizBtn" class="btn" style="display:none;">Ponovo</button>
+      </form>
+      <p style="text-align:center;margin-top:18px;">
+        <a href="StudentFunZone.html" class="back-link">← Povratak na Student Fun Zone</a>
+      </p>
+    </div>
   </article>
+  <!-- Quiz Perfect Score Overlay -->
+  <div id="quizPerfectOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="quizPerfectTitle">
+    <div class="modal-card">
+      <button class="modal-close-btn" type="button" aria-label="Zatvori" id="quizCloseBtn">×</button>
+      <h2 id="quizPerfectTitle">Savršen rezultat!</h2>
+      <p id="quizPerfectMsg">Odgovorili ste tačno na sva pitanja. Sjajan posao! Želite li pokušati ponovo ili provjeriti
+        druge igre?</p>
+      <div class="modal-actions">
+        <button type="button" id="quizRestartBtn">Ponovo</button>
+        <button type="button" id="quizContinueBtn">Nastavi</button>
+        <a href="StudentFunZone.html" class="back-link" style="padding:10px 16px;">← Fun Zone</a>
+      </div>
+    </div>
+  </div>
   <footer>&copy; Internacionalna poslovno-informaciona akademija Tuzla</footer>
   <script src="quiz-app.js"></script>
 </body>

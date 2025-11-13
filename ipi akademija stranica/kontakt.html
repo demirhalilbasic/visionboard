@@ -25,61 +25,70 @@
 	</header>
 	<article>
 		<h2>Kontakt</h2>
-		<img src="slike/srce.jpg" alt="Srce">
-		<p>Do IPI-ja se može doći javnim gradskim prevozom ili taksijem.</p>
-		<p>Naša adresa je:</p>
-		<p>Sveučilišni računski centar<br>
-			Kulina bana br. 2 (Skver)<br>
-			Tuzla<br>
-			75000<br>
-			Bosna i Hercegovina<br>
-			<a href="mailto:info@ipi-akademija.ba">info@ipi-akademija.ba</a>
-		</p>
-
-		<hr style="margin:30px 0;">
-		<h3>Kontakt forma</h3>
-		<p>Ispunite formu ispod i naš tim će vam se javiti. Sva polja su obavezna.</p>
-		<form id="kontaktForma" novalidate style="max-width:600px;">
-			<div style="margin-bottom:12px;">
-				<label for="ime">Ime</label><br>
-				<input type="text" id="ime" name="ime" required placeholder="Vaše ime" />
-				<small class="error" id="errIme" style="color:#c00000;display:none;">Unesite ime (min 2 slova).</small>
-			</div>
-			<div style="margin-bottom:12px;">
-				<label for="prezime">Prezime</label><br>
-				<input type="text" id="prezime" name="prezime" required placeholder="Vaše prezime" />
-				<small class="error" id="errPrezime" style="color:#c00000;display:none;">Unesite prezime (min 2
-					slova).</small>
-			</div>
-			<div style="margin-bottom:12px;">
-				<label for="email">Email</label><br>
-				<input type="email" id="email" name="email" required placeholder="primjer@domena.com" />
-				<small class="error" id="errEmail" style="color:#c00000;display:none;">Neispravan email format.</small>
-			</div>
-			<div style="margin-bottom:12px;">
-				<label for="telefon">Broj telefona</label><br>
-				<input type="text" id="telefon" name="telefon" required placeholder="npr. +38761111222" />
-				<small class="error" id="errTelefon" style="color:#c00000;display:none;">Neispravan format
-					telefona.</small>
-				<div id="detekcijaDrzave" style="margin-top:6px; display:none; font-size:12px;">
-					<span id="nazivDrzave" style="font-weight:bold;color:#345AAA;"></span>
-					<img id="zastavaDrzave" src="" alt="Zastava"
-						style="height:16px;vertical-align:middle;margin-left:6px;display:none;" />
+		<div class="contact-layout">
+			<div class="contact-info">
+				<img src="slike/srce.jpg" alt="Srce"
+					style="width:100%;max-width:320px;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,0.12);margin-bottom:15px;">
+				<h3 style="margin-top:5px;margin-bottom:8px;">Naša adresa</h3>
+				<p style="line-height:1.7;margin:0 0 10px 0;">
+					<strong>Sveučilišni računski centar</strong><br>
+					Kulina bana br. 2 (Skver)<br>
+					75000 Tuzla<br>
+					Bosna i Hercegovina<br>
+					<a href="mailto:info@ipi-akademija.ba">info@ipi-akademija.ba</a>
+				</p>
+				<p style="margin:4px 0 14px 0;font-size:12px;">Do IPI-ja se može doći javnim gradskim prevozom ili
+					taksijem.</p>
+				<div class="map-container" style="margin-top:10px;">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2871.234567890123!2d18.6743!3d44.5391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475913c9b4c4b4b3%3A0x1234567890abcdef!2sKulina%20bana%202%2C%20Tuzla%2C%20Bosnia%20and%20Herzegovina!5e0!3m2!1sen!2sba!4v1234567890123!5m2!1sen!2sba"
+						width="100%" height="270"
+						style="border:0;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,0.12);" allowfullscreen=""
+						loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+					</iframe>
 				</div>
 			</div>
-			<div style="margin-bottom:12px;">
-				<label for="poruka">Poruka</label><br>
-				<textarea id="poruka" name="poruka" rows="5" required
-					placeholder="Vaša poruka (min 10 karaktera)"></textarea>
-				<small class="error" id="errPoruka" style="color:#c00000;display:none;">Poruka mora imati najmanje 10
-					karaktera.</small>
+			<div class="contact-form-wrapper">
+				<h3>Kontaktirajte nas</h3>
+				<p>Ispunite formu ispod i naš tim će vam se javiti. Sva polja su obavezna.</p>
+				<form id="kontaktForma" novalidate class="modern-form">
+					<div class="form-group">
+						<label for="ime">Ime</label>
+						<input type="text" id="ime" name="ime" required placeholder="Vaše ime" />
+						<small class="error" id="errIme">Unesite ime (min 2 slova).</small>
+					</div>
+					<div class="form-group">
+						<label for="prezime">Prezime</label>
+						<input type="text" id="prezime" name="prezime" required placeholder="Vaše prezime" />
+						<small class="error" id="errPrezime">Unesite prezime (min 2 slova).</small>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" required placeholder="primjer@domena.com" />
+						<small class="error" id="errEmail">Neispravan email format.</small>
+					</div>
+					<div class="form-group">
+						<label for="telefon">Broj telefona</label>
+						<input type="text" id="telefon" name="telefon" required placeholder="npr. +38761111222" />
+						<small class="error" id="errTelefon">Neispravan format telefona.</small>
+						<div id="detekcijaDrzave" class="country-detect">
+							<span id="nazivDrzave"></span>
+							<img id="zastavaDrzave" src="" alt="Zastava" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="poruka">Poruka</label>
+						<textarea id="poruka" name="poruka" rows="5" required
+							placeholder="Vaša poruka (min 10 karaktera)"></textarea>
+						<small class="error" id="errPoruka">Poruka mora imati najmanje 10 karaktera.</small>
+					</div>
+					<input type="hidden" id="drzava" name="drzava" />
+					<input type="hidden" id="pozivni" name="pozivni" />
+					<button type="submit" class="submit-btn">Pošalji poruku</button>
+					<div id="uspjeh" class="success-msg">Poruka uspješno poslata!</div>
+				</form>
 			</div>
-			<input type="hidden" id="drzava" name="drzava" />
-			<input type="hidden" id="pozivni" name="pozivni" />
-			<button type="submit">Pošalji</button>
-			<div id="uspjeh" style="color:#2a4a8a;font-weight:bold;margin-top:15px;display:none;">Poruka uspješno
-				poslata!</div>
-		</form>
+		</div>
 	</article>
 	<footer>&copy; Internacionalna poslovno-informaciona akademija Tuzla</footer>
 	<script src="contact.js?v=4"></script>

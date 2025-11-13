@@ -5,6 +5,11 @@ const quizContainer = document.getElementById("quizRoot");
 const checkBtn = document.getElementById("checkAnswersBtn");
 const resultBox = document.getElementById("quizResult");
 const restartBtn = document.getElementById("restartQuizBtn");
+const perfectOverlay = document.getElementById("quizPerfectOverlay");
+const quizCloseBtn = document.getElementById("quizCloseBtn");
+const quizRestartBtn = document.getElementById("quizRestartBtn");
+const quizContinueBtn = document.getElementById("quizContinueBtn");
+let perfectShown = false;
 
 // Define questions (id => correct values)
 const answers = {
@@ -14,6 +19,15 @@ const answers = {
   q4: ["href", "src", "alt"],
   q5: ['<a href="example.com">Click</a>'],
 };
+
+function normalize(str) {
+  if (!str) return "";
+  return str
+    .replace(/\s+/g, " ") // collapse whitespace
+    .replace(/=\s+/g, "=") // remove spaces right after equals (e.g. href=" example.com")
+    .replace(/\\+/g, "") // remove any literal backslashes
+    .trim();
+}
 
 function collectUserAnswers() {
   const user = {};
@@ -36,8 +50,12 @@ function grade() {
   Object.keys(answers).forEach((qid) => {
     const correctSet = new Set(answers[qid]);
     const userSet = new Set(user[qid]);
-    const allCorrectSelected = answers[qid].every((a) => userSet.has(a));
-    const noIncorrect = Array.from(userSet).every((a) => correctSet.has(a));
+    const allCorrectSelected = answers[qid]
+      .map(normalize)
+      .every((a) => Array.from(userSet).some((u) => normalize(u) === a));
+    const noIncorrect = Array.from(userSet).every((a) =>
+      Array.from(correctSet).map(normalize).includes(normalize(a))
+    );
     if (allCorrectSelected && noIncorrect) {
       total++;
       markQuestion(qid, true);
@@ -59,6 +77,10 @@ function showResult(score, max) {
   resultBox.innerHTML = `Rezultat: <strong>${score}</strong> / ${max}`;
   resultBox.classList.add("visible");
   restartBtn.style.display = "inline-block";
+  if (score === max && !perfectShown) {
+    perfectShown = true;
+    showPerfectOverlay();
+  }
 }
 
 function restart() {
@@ -73,6 +95,8 @@ function restart() {
   resultBox.classList.remove("visible");
   restartBtn.style.display = "none";
   window.scrollTo({ top: 0, behavior: "smooth" });
+  perfectShown = false;
+  hidePerfectOverlay();
 }
 
 checkBtn?.addEventListener("click", (e) => {
@@ -80,3 +104,17 @@ checkBtn?.addEventListener("click", (e) => {
   grade();
 });
 restartBtn?.addEventListener("click", restart);
+
+function showPerfectOverlay() {
+  perfectOverlay?.classList.add("visible");
+  quizRestartBtn?.focus();
+}
+function hidePerfectOverlay() {
+  perfectOverlay?.classList.remove("visible");
+}
+
+quizCloseBtn?.addEventListener("click", hidePerfectOverlay);
+quizContinueBtn?.addEventListener("click", hidePerfectOverlay);
+quizRestartBtn?.addEventListener("click", () => {
+  restart();
+});

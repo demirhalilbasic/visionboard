@@ -40,6 +40,19 @@
       <a href="StudentFunZone.html" class="back-link">← Povratak na Student Fun Zone</a>
     </p>
   </article>
+  <!-- Bingo Win Overlay -->
+  <div id="bingoOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="bingoWinTitle">
+    <div class="modal-card">
+      <button class="modal-close-btn" type="button" aria-label="Zatvori" id="bingoCloseBtn">×</button>
+      <h2 id="bingoWinTitle">BINGO!</h2>
+      <p id="bingoWinMsg">Čestitamo, kompletirali ste liniju! Možete generisati novu karticu ili resetovati oznake.</p>
+      <div class="modal-actions">
+        <button type="button" id="bingoNewGameBtn">Nova kartica</button>
+        <button type="button" id="bingoResetBtn">Reset oznaka</button>
+        <button type="button" id="bingoContinueBtn">Nastavi igru</button>
+      </div>
+    </div>
+  </div>
   <footer>&copy; Internacionalna poslovno-informaciona akademija Tuzla</footer>
   <script src="bingo-app.js"></script>
 </body>

@@ -2,13 +2,25 @@
 /* Base layout from standalone visionboard/style.css, with blue buttons */
 body {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background: #e3d7b4;
+  font-family: Verdana, Arial, sans-serif;
+  background: linear-gradient(
+    135deg,
+    #e8f0f7 0%,
+    #d4e3f0 50%,
+    #c5d9ed 100%
+  ) !important;
+  background-attachment: fixed !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Ensure global footer spans full width even with flex container */
+footer {
+  align-self: stretch;
+  width: 100%;
 }
 
 h1 {
@@ -50,7 +62,7 @@ button:hover {
   position: relative;
   width: 90%;
   height: 340px;
-  background: url("slike/pluto.png");
+  background: url("../slike/pluto.png");
   background-size: cover;
   border-radius: 12px;
   box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.3);
